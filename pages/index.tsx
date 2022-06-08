@@ -20,13 +20,25 @@ const Home: NextPage = () => {
         <link rel='icon' href='/resider-favicon.png' />
       </Head>
 
+      <div className='flex justify-between shadow-lg p-4'>
+        <Image
+          src='/resider-logo-header.svg'
+          alt='Resider Logo'
+          width={72}
+          height={16}
+        />
+        <button className='drop-shadow-lg rounded-lg bg-slate-500 text-white p-2'>
+          Request a Demo
+        </button>
+      </div>
+
       <main>
         <div>
           <Image
-            src='/resider-logo-header.svg'
-            alt='Resider Logo square'
-            width={72}
-            height={16}
+            src='/resider-logo-square.svg'
+            alt='Resider Logo'
+            width={50}
+            height={50}
           />
           <h1>
             A <span>better</span> way to generate leads
