@@ -1,42 +1,51 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useFormik } from 'formik'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useFormik } from "formik";
 
 const Home: NextPage = () => {
   const formik = useFormik({
     initialValues: {
-      email: '',
+      email: "",
     },
     onSubmit: (values) => {
-      alert(`values! ${values}`)
+      alert(`values! ${values}`);
+      const options = {
+        method: 'POST',
+        headers: {Accept: 'application/json', 'Content-Type': 'application/json'}
+      };
+      
+      fetch('https://www.streak.com/api/v2/pipelines/pipelineKey/boxes', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
     },
-  })
+  });
   return (
     <div>
       <Head>
         <title>Landing Page</title>
-        <meta name='description' content='Resider Tour Scheduling' />
-        <link rel='icon' href='/resider-favicon.png' />
+        <meta name="description" content="Resider Tour Scheduling" />
+        <link rel="icon" href="/resider-favicon.png" />
       </Head>
 
-      <div className='flex justify-between shadow-lg p-4'>
+      <div className="flex justify-between shadow-lg p-4">
         <Image
-          src='/resider-logo-header.svg'
-          alt='Resider Logo'
+          src="/resider-logo-header.svg"
+          alt="Resider Logo"
           width={72}
           height={16}
         />
-        <button className='drop-shadow-lg rounded-lg bg-slate-500 text-white p-2'>
+        <button className="drop-shadow-lg rounded-lg bg-slate-500 text-white p-2">
           Request a Demo
         </button>
       </div>
 
-      <main>
+      <main className="text-center">
         <div>
           <Image
-            src='/resider-logo-square.svg'
-            alt='Resider Logo'
+            src="/resider-logo-square.svg"
+            alt="Resider Logo"
             width={50}
             height={50}
           />
@@ -141,29 +150,16 @@ const Home: NextPage = () => {
 
         <form onSubmit={formik.handleSubmit}>
           <input
-            id='email'
-            name='email'
-            type='email'
+            id="email"
+            name="email"
+            type="email"
             onChange={formik.handleChange}
             value={formik.values.email}
           />
         </form>
       </main>
-
-      <footer>
-        <a href='#' target='_blank' rel='noopener noreferrer'>
-          <span>
-            <Image
-              src='/resider-logo-header.svg'
-              alt='Resider Logo'
-              width={72}
-              height={16}
-            />
-          </span>
-        </a>
-      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
