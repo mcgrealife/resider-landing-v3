@@ -6,23 +6,25 @@ import { useFormik } from "formik";
 const Home: NextPage = () => {
   const formik = useFormik({
     initialValues: {
-      email: "",
+      comments: "comments placeholder",
     },
     onSubmit: (values) => {
-      alert(`values! ${values}`);
-      const options = {
-        method: 'POST',
-        headers: {Accept: 'application/json', 'Content-Type': 'application/json'}
-      };
-      
-      fetch('https://www.streak.com/api/v2/pipelines/pipelineKey/boxes', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+      console.log("values");
     },
   });
   return (
     <div>
+      <form onSubmit={formik.handleSubmit}>
+        <label htmlFor="text">Comments</label>
+        <input
+          id="comments"
+          name="comments"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.comments}
+        />
+        <button type="submit">Submit</button>
+      </form>
       <Head>
         <title>Landing Page</title>
         <meta name="description" content="Resider Tour Scheduling" />
@@ -147,16 +149,6 @@ const Home: NextPage = () => {
           </p>
           {/* <Image alt='hero-circle' /> */}
         </div>
-
-        <form onSubmit={formik.handleSubmit}>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          />
-        </form>
       </main>
     </div>
   );
