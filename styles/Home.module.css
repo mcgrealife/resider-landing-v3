@@ -1,9 +1,79 @@
-.sectionA {
-
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  text-align: center;
+  align-content: center;
 }
 
-.sectionB {
+.header {
+  display: flex;
+justify-content: space-between;
+padding: 10px;
+background: white;
+z-index: 2;
+}
 
+.header button {
+  background: var(--blue-1);
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  border: none
+}
+
+.sectionA {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionA .imgContainer {
+  height: 300px;
+  width: 300px;
+}
+
+
+.sectionB {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* max-width: 80%; */
+}
+
+
+.sectionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form input:focus-visible , .form select:focus-visible {
+  /* outline-color: var(--blue-2) */
+}
+.form input, .form select {
+  /* width: 200px; */
+  
+}
+
+
+
+.textCon {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  text-align: center;
+}
+
+.placeholder {
+color: grey
 }
 
 
@@ -17,4 +87,105 @@
 
 .sectionA, .sectionB p {
   
+}
+
+
+.imgContainer {
+  position: relative;
+  height: 600px;
+  width: 250px;
+}
+
+.sectionImage {
+
+}
+
+.main h2 span {
+  color: var(--blue-1);
+}
+
+@media (min-width: 795px) {
+
+  .header {
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    box-shadow: 0px 1px 3px 1px rgb(60 64 67 / 15%), 0px 1px 2px rgb(60 64 67 / 30%);
+  }
+  
+  .main {
+    gap: 50px;
+    align-items: center;
+  }
+
+  .sectionB {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
+    flex-direction: row;
+  }
+  
+  .sectionB:nth-child(odd) {
+    flex-flow: row-reverse;
+
+  }
+  .textCon {
+    max-width: 40%;
+    text-align: left;
+  }
+
+  .imgContainer {
+    position: relative;
+    height: 600px;
+    width: 250px;
+  }
+  
+  .sectionA .imgContainer {
+    height: 526px;
+    width: 526px;
+  }
+
+  .sectionForm {
+    gap: 16px;
+    margin: 8px;
+    margin: 24px
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: row;
+    max-width: 80%;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .form input, .form select {
+    width: 400px;
+  }
+  
+  .sectionA h1{
+
+  }
+
+  .sectionB h2 {
+    
+  }
+
+  .sectionB p {
+    
+  }
+
+  .sectionB .sectionImage {
+    
+  }
+
+
+  .sectionB {
+    
+  }
+
+  .header{
+    grid-column: 1/4;
+  }
 }

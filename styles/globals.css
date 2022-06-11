@@ -54,7 +54,6 @@ body {
   margin: 0;
   font-family: Gilroy, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    /* cursor: url('https://fav.farm/💰') 15 0, auto; */
   }
   
   a {
@@ -62,6 +61,14 @@ body {
     text-decoration: none; 
   }
 
+  h1, h2, h3, p  {
+    margin: 0;
+  }
+
 * {
   box-sizing: border-box;
+  --blue-1: #366CA5;
+  --blue-2: rgb(229, 239, 255);
+  /* --dark-1: #366CA5; */
+  /* --dark-2: #366CA5; */
 }
