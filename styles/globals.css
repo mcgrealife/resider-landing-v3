@@ -27,6 +27,15 @@
     url('./fonts/gilroy/semi-bold.woff2') format('woff2'),
     url('./fonts/gilroy/semi-bold.woff') format('woff');
 }
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Gilroy Bold'), local('Gilroy-Bold'),
+    url('./fonts/gilroy/bold.woff2') format('woff2'),
+    url('./fonts/gilroy/bold.woff') format('woff');
+}
 
 @font-face {
   font-family: 'Gilroy';
@@ -52,8 +61,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Gilroy, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
   
   a {
@@ -63,12 +70,26 @@ body {
 
   h1, h2, h3, p  {
     margin: 0;
+    font-feature-settings: 'liga' off;
+  }
+
+  h1, h2 {
+    color: var(--dark-1)
+  }
+
+  p {
+    color: var(--dark-2);
+    font-weight: 400
   }
 
 * {
   box-sizing: border-box;
+  font-family: Gilroy, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --blue-1: #366CA5;
   --blue-2: rgb(229, 239, 255);
-  /* --dark-1: #366CA5; */
-  /* --dark-2: #366CA5; */
+  --dark-1: #3C4043;
+  --dark-2: #606367;
+  --dark-3: #5F6368;
+  --dark-4-diables: #A2A3A4;
 }
