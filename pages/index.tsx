@@ -2,20 +2,16 @@ import React, { useRef, useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Field, Form, Formik, useFormik, FormikProps } from 'formik'
+import { Field, Form, Formik, FormikProps } from 'formik'
 import logoSquare from '../public/resider-logo-square-new.svg'
 import logoRectangle from '../public/resider-logo-header.svg'
-import img0 from '../public/phone/0.png'
-import img1 from '../public/phone/1.png'
-import img2 from '../public/phone/2.png'
-import img3 from '../public/phone/3.png'
-import img4 from '../public/phone/4.png'
-import img5 from '../public/phone/5.png'
-import img6 from '../public/phone/6.png'
-import img7 from '../public/phone/7.png'
-import img8 from '../public/phone/8.png'
+import img0 from '../public/images/0.png'
+import img1 from '../public/images/1.png'
 import classes from '../styles/Home.module.css'
 import clsx from 'clsx'
+import imageTab0 from '../public/images/tab-0.png'
+import imageTab1 from '../public/images/tab-1.png'
+import imageTab2 from '../public/images/tab-2.png'
 
 const Home: NextPage = () => {
   const [isDesktop, setIsDesktop] = useState(false)
@@ -56,6 +52,8 @@ const Home: NextPage = () => {
     })
   })
 
+  const [selectedTab, setSelectedTab] = useState(0)
+
   return (
     <div className={classes.root}>
       <Head>
@@ -69,8 +67,6 @@ const Home: NextPage = () => {
         className={
           !isDesktop && scrollDir == 'down'
             ? classes.headerHidden
-            : isDesktop && lastScroll == 0
-            ? clsx(classes.header, classes.shadowNone)
             : classes.header
         }
       >
@@ -86,23 +82,17 @@ const Home: NextPage = () => {
 
       <main className={classes.main}>
         <div className={classes.sectionA}>
-          <div className={classes.imgCon0}>
-            <Image
-              priority
-              src={logoSquare}
-              alt='Resider Logo'
-              layout='fill'
-              objectFit='contain'
-            />
+          <div className={classes.textCon}>
+            <h1>
+              Qualifed, booked and <span>ready to tour</span>.
+            </h1>
+            <p>
+              Resider.com is redefining customer acquisition. From new user to
+              new client, our powerful rental platform fluidly delivers eligible
+              prospects, comprehensive details, and a scheduled appointment
+              booked instantly to your calendar.
+            </p>
           </div>
-          <h1>
-            A <span>better</span> way
-            <br /> to generate leads
-          </h1>
-          <p>
-            Resider is a smart, efficient and helpful way to qualify and
-            schedule your prosepective tenants.
-          </p>
           <div className={classes.imgCon}>
             <Image
               priority
@@ -110,60 +100,130 @@ const Home: NextPage = () => {
               alt='img'
               layout='fill'
               objectFit='contain'
-              className={classes.sectionImage}
+              // className={classes.sectionImage}
             />
+          </div>
+        </div>
+
+        <div className={classes.sectionTabs}>
+          <h1>
+            Find the right apartment <span>faster</span>
+          </h1>
+          <p>
+            Advanced search tools quickly put the user on the right track to
+            locating eligible apartment homes.
+          </p>
+          <div className={classes.tabs}>
+            <div
+              className={
+                selectedTab == 0
+                  ? clsx(classes.tab, classes.selectedTab)
+                  : classes.tab
+              }
+              onClick={() => setSelectedTab(0)}
+            >
+              Data
+            </div>
+            <div
+              className={
+                selectedTab == 1
+                  ? clsx(classes.tab, classes.selectedTab)
+                  : classes.tab
+              }
+              onClick={() => setSelectedTab(1)}
+            >
+              Filter
+            </div>
+            <div
+              className={
+                selectedTab == 2
+                  ? clsx(classes.tab, classes.selectedTab)
+                  : classes.tab
+              }
+              onClick={() => setSelectedTab(2)}
+            >
+              Commute
+            </div>
+          </div>
+          <div className={classes.tabContent}>
+            {selectedTab == 0 && (
+              <>
+                <div className={classes.imgWrap}>
+                  <div className={classes.imgCon0}>
+                    <Image
+                      priority
+                      src={imageTab0}
+                      className={classes.tabImage}
+                      alt='img'
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  </div>
+                </div>
+                <div className={classes.textCon}>
+                  <h2>Data</h2>
+                  <p>
+                    To ensure accurate and up-to-date information, all
+                    properties featured on Resider are syndicated through data
+                    API’s.{' '}
+                  </p>
+                </div>
+              </>
+            )}
+            {selectedTab == 1 && (
+              <>
+                <div className={classes.imgWrap}>
+                  <div className={classes.imgCon1}>
+                    <Image
+                      priority
+                      src={imageTab1}
+                      className={classes.tabImage}
+                      alt='img'
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  </div>
+                </div>
+                <div className={classes.textCon}>
+                  <h2>Filter</h2>
+                  <p>
+                    Allowing users to narrow down exact availability, including
+                    by move-in-date, is the first step to matching a qualified
+                    client to your property.
+                  </p>
+                </div>
+              </>
+            )}
+            {selectedTab == 2 && (
+              <>
+                <div className={classes.imgWrap}>
+                  <div className={classes.imgCon2}>
+                    <Image
+                      priority
+                      src={imageTab2}
+                      className={classes.tabImage}
+                      alt='img'
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  </div>
+                </div>
+                <div className={classes.textCon}>
+                  <h2>Commute</h2>
+                  <p>
+                    Fine tune results even further by filtering properties that
+                    fall within a desired commute time.
+                  </p>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
         <div className={classes.sectionB}>
           <div className={classes.textCon}>
             <h2>
-              Platform <span>integrity</span>
-            </h2>
-            <p>
-              Resider solely consists of rental properties syndicated through
-              data API’s. With up to date and accurate listings, your clients
-              can browse with confidence.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img1}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              <span>Move in</span> date
-            </h2>
-            <p>
-              Qualified leads are our emphasis. Allowing users to narrow down
-              exact availability by their move in date is the first step.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img2}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              <span>Personalized</span> property
+              <span>Property</span>
             </h2>
             <p>
               With a beautiful display of your property, we highlight key
@@ -173,118 +233,7 @@ const Home: NextPage = () => {
           <div className={classes.imgCon}>
             <Image
               priority
-              src={img3}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              <span>Filtered</span> availability
-            </h2>
-            <p>
-              Grouped by floor plan, available units are based on user&apos;s
-              filters to ensure eligible results and qualified clients.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img4}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              <span>Instant</span> booking
-            </h2>
-            <p>
-              Through the RENTCafé platform, Resider syncs to your appointment
-              calender and allows the user to instantly schedule an available
-              tour.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img5}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              Tour <span>type</span>
-            </h2>
-            <p>
-              Users are able to book an in-person tour, or a live video tour
-              using Zoom.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img6}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              <span>Capture</span> required details
-            </h2>
-            <p>
-              Before successfully booking, users are instruted to fill in
-              mandatory information vital to the lead qualifying process.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img7}
-              alt='img'
-              layout='fill'
-              objectFit='contain'
-              className={classes.sectionImage}
-            />
-          </div>
-        </div>
-
-        <div className={classes.sectionB}>
-          <div className={classes.textCon}>
-            <h2>
-              Tour <span>confirmation</span>
-            </h2>
-            <p>
-              Once a tour is booked, all captured information is logged as a
-              guest card and stored in your RENTCafé CRM.
-            </p>
-          </div>
-          <div className={classes.imgCon}>
-            <Image
-              priority
-              src={img8}
+              src={img1}
               alt='img'
               layout='fill'
               objectFit='contain'
