@@ -41,11 +41,24 @@ const Home: NextPage = () => {
   })
 
   const sectionForm = useRef<HTMLDivElement>(null)
+  const booking = useRef<HTMLDivElement>(null)
 
   const handleClick = (): void => {
     sectionForm.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
+    })
+  }
+  const arrowClickLeft = (): void => {
+    booking.current?.scrollTo({
+      behavior: 'smooth',
+      left: 0,
+    })
+  }
+  const arrowClickRight = (): void => {
+    booking.current?.scrollTo({
+      behavior: 'smooth',
+      left: 3000,
     })
   }
 
@@ -57,17 +70,13 @@ const Home: NextPage = () => {
   useEffect(() => {
     window.addEventListener('scroll', function (e: any) {
       const curScrollTop = e.target.scrollingElement.scrollTop
-      console.log(lastScroll, curScrollTop)
       let scrollDir = ''
       if (curScrollTop > lastScroll) {
         setScrollDir('down')
-        console.log('down')
       }
       if (curScrollTop < lastScroll) {
         setScrollDir('up')
-        console.log('up')
       }
-      console.log(scrollDir)
       setLastScroll(curScrollTop)
     })
   })
@@ -291,13 +300,13 @@ const Home: NextPage = () => {
             </h1>
             {isDesktop && (
               <div style={{ display: 'flex', gap: '36px', marginTop: '124px' }}>
-                <img src='/arrow-left.svg' />
-                <img src='/arrow-right.svg' />
+                <img src='/arrow-left.svg' onClick={arrowClickLeft} />
+                <img src='/arrow-right.svg' onClick={arrowClickRight} />
               </div>
             )}
           </div>
 
-          <div className={classes.booking}>
+          <div className={classes.booking} ref={booking}>
             <BookingCard
               title='Select timeslot'
               subtext='In real-time, Resider syncs to your appointment calender and allows the user to instantly schedule an available tour.'
@@ -326,22 +335,21 @@ const Home: NextPage = () => {
         <h1>Request a Demo</h1>
         <p>Sign up to learn more about Resider.</p>
         <Formik
-          initialValues={
-            {
-              // firstName: 'First name',
-              // lastName:
-              // 'Last name',
-              // workEmail: 'Work Email',
-              // phone: 'Phone number',
-              // managementCo: 'Property management company',
-              // propertySize: '0-100',
-            }
-          }
+          initialValues={{}}
           onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2))
-              actions.setSubmitting(false)
-            }, 1000)
+            const url =
+              'https://hooks.slack.com/services/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'
+            const options = {
+              method: 'POST',
+              body: JSON.stringify({
+                text: JSON.stringify(values),
+              }),
+            }
+            fetch(url, options)
+              .then((response) => response.json())
+              .then((data) => console.log(data))
+            actions.setSubmitting(false)
+            alert(`Success. We'll contact you soon.`)
           }}
         >
           {(props: FormikProps<any>) => (
@@ -373,7 +381,7 @@ const Home: NextPage = () => {
                   required
                 >
                   <option value='' className={classes.placeholder}>
-                    Property size *{/* validate this empty value */}
+                    Property size *
                   </option>
                   <option value='0-100'>0-100</option>
                   <option value='101-500'>101-500</option>
