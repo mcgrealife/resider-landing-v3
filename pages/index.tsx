@@ -54,13 +54,33 @@ const Home: NextPage = () => {
       behavior: 'smooth',
       left: 0,
     })
+    setTimeout(() => {
+      setActiveArrow('right')
+    }, 1000)
   }
   const arrowClickRight = (): void => {
     booking.current?.scrollTo({
       behavior: 'smooth',
       left: 3000,
     })
+    setTimeout(() => {
+      setActiveArrow('left')
+    }, 1000)
   }
+
+  const handleBookingScroll = () => {
+    const bookingLeft = booking.current?.scrollLeft
+
+    if (bookingLeft && bookingLeft > 0 && activeArrow == 'left') return
+    if (bookingLeft && bookingLeft == 0 && activeArrow == 'right') return
+
+    bookingLeft == 0 ? setActiveArrow('right') : setActiveArrow('left')
+  }
+  const [activeArrow, setActiveArrow] = useState<'left' | 'right'>('left')
+
+  useEffect(() => {
+    console.log(activeArrow)
+  }, [activeArrow])
 
   const headerRef = useRef<HTMLDivElement>(null)
 
@@ -300,13 +320,49 @@ const Home: NextPage = () => {
             </h1>
             {isDesktop && (
               <div style={{ display: 'flex', gap: '36px', marginTop: '124px' }}>
-                <img src='/arrow-left.svg' onClick={arrowClickLeft} />
-                <img src='/arrow-right.svg' onClick={arrowClickRight} />
+                <svg
+                  width='20'
+                  height='20'
+                  viewBox='0 0 20 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  onClick={arrowClickLeft}
+                >
+                  <path
+                    d='M18.7621 8.68726L4.37137 8.68726L10.7157 2.20077C11.1799 1.73745 11.1799 0.810807 10.7157 0.347486C10.2515 -0.115834 9.32302 -0.115834 8.8588 0.347486L0.348163 8.99614C-0.116056 9.45946 -0.116056 10.3861 0.348162 10.8494L8.70406 19.6525C9.16828 20.1158 10.0967 20.1158 10.5609 19.6525C11.0251 19.1892 11.0251 18.2625 10.5609 17.7992L4.21663 11.3127L18.7621 11.3127C19.381 11.4672 20 10.8494 20 10.0772C20 9.30502 19.381 8.68726 18.7621 8.68726Z'
+                    fill={
+                      activeArrow == 'left'
+                        ? '#3C4043'
+                        : 'rgba(60, 64, 67, 0.16)'
+                    }
+                  />
+                </svg>
+                <svg
+                  width='20'
+                  height='20'
+                  viewBox='0 0 20 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  onClick={arrowClickRight}
+                >
+                  <path
+                    d='M1.23791 11.3127H15.6286L9.28433 17.7992C8.82012 18.2625 8.82012 19.1892 9.28433 19.6525C9.74855 20.1158 10.677 20.1158 11.1412 19.6525L19.6518 11.0039C20.1161 10.5405 20.1161 9.6139 19.6518 9.15058L11.2959 0.34749C10.8317 -0.11583 9.90329 -0.11583 9.43907 0.34749C8.97486 0.810811 8.97486 1.73745 9.43907 2.20077L15.7834 8.68726H1.23791C0.618956 8.53282 0 9.15058 0 9.92278C0 10.695 0.618956 11.3127 1.23791 11.3127Z'
+                    fill={
+                      activeArrow == 'right'
+                        ? '#3C4043'
+                        : 'rgba(60, 64, 67, 0.16)'
+                    }
+                  />
+                </svg>
               </div>
             )}
           </div>
 
-          <div className={classes.booking} ref={booking}>
+          <div
+            className={classes.booking}
+            ref={booking}
+            onScroll={handleBookingScroll}
+          >
             <BookingCard
               title='Select timeslot'
               subtext='In real-time, Resider syncs to your appointment calender and allows the user to instantly schedule an available tour.'
