@@ -68,6 +68,8 @@ const Home: NextPage = () => {
     }, 1000)
   }
 
+  const [activeArrow, setActiveArrow] = useState<'left' | 'right'>('right')
+
   const handleBookingScroll = () => {
     const bookingLeft = booking.current?.scrollLeft
 
@@ -76,7 +78,6 @@ const Home: NextPage = () => {
 
     bookingLeft == 0 ? setActiveArrow('right') : setActiveArrow('left')
   }
-  const [activeArrow, setActiveArrow] = useState<'left' | 'right'>('left')
 
   useEffect(() => {
     console.log(activeArrow)
