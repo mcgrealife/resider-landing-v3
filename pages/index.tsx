@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { Field, Form, Formik, FormikProps } from 'formik'
 import logoSquare from '../public/resider-logo-square-new.svg'
 import logoRectangle from '../public/resider-logo-header.svg'
@@ -12,8 +12,28 @@ import clsx from 'clsx'
 import imageTab0 from '../public/images/tab-0.png'
 import imageTab1 from '../public/images/tab-1.png'
 import imageTab2 from '../public/images/tab-2.png'
+import filteredAvailability from '../public/images/filtered-availability.png'
+import booking1 from '../public/images/booking-1.png'
+import booking2 from '../public/images/booking-2.png'
+import booking3 from '../public/images/booking-3.png'
+import booking4 from '../public/images/booking-4.png'
 
 const Home: NextPage = () => {
+  interface BookingProps {
+    title: string
+    subtext: string
+    image: StaticImageData
+  }
+  const BookingCard = ({ title, subtext, image }: BookingProps) => {
+    return (
+      <div className={classes.bookingCard}>
+        <Image src={image} width={516} height={322} priority />
+        <h2>{title}</h2>
+        <p>{subtext}</p>
+      </div>
+    )
+  }
+
   const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
@@ -238,6 +258,65 @@ const Home: NextPage = () => {
               layout='fill'
               objectFit='contain'
               className={classes.sectionImage}
+            />
+          </div>
+        </div>
+
+        <div className={classes.sectionB}>
+          <div className={classes.textCon} id='filteredAvailabilityTextCon'>
+            <h2>
+              <span>Filtered</span> availability
+            </h2>
+            <p>
+              Grouped by floor plan, available units are based on the user’s
+              filters to ensure eligible results and qualified clients.
+            </p>
+          </div>
+          <div className={classes.imgCon} id='filteredAvailability'>
+            <Image
+              priority
+              src={filteredAvailability}
+              alt='img'
+              layout='fill'
+              objectFit='contain'
+              className={classes.sectionImage}
+            />
+          </div>
+        </div>
+
+        <div className={classes.bookingSection}>
+          <div className={classes.bookingSectionTitleRow}>
+            <h1>
+              <span>Instant</span> Booking
+            </h1>
+            {isDesktop && (
+              <div style={{ display: 'flex', gap: '36px', marginTop: '124px' }}>
+                <img src='/arrow-left.svg' />
+                <img src='/arrow-right.svg' />
+              </div>
+            )}
+          </div>
+
+          <div className={classes.booking}>
+            <BookingCard
+              title='Select timeslot'
+              subtext='In real-time, Resider syncs to your appointment calender and allows the user to instantly schedule an available tour.'
+              image={booking1}
+            />
+            <BookingCard
+              title='Tour type'
+              subtext='Tour booking options include in-person, live video using Zoom, or self guided.'
+              image={booking2}
+            />
+            <BookingCard
+              title='Capture details'
+              subtext='Before successfully booking, users are instructed to fill in mandatory information vital to the lead qualifying process.'
+              image={booking3}
+            />
+            <BookingCard
+              title='Tour confirmation'
+              subtext='Once a tour is booked, all captured information is logged as a guest card and stored in your CRM.'
+              image={booking4}
             />
           </div>
         </div>

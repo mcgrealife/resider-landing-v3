@@ -2,20 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overscroll-behavior: none;
+  max-width: 100vw;
+  overflow-x: auto;
 }
 .main {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-content: center;
+  align-items: center;
   margin-top: 104px;
   position: relative;
-  overflow: 'scroll';
-  max-width: 326px;
+  overflow: auto;
   margin-bottom: 116px;
-  max-width: 326px;
-  overscroll-behavior: none;
+  /* max-width: 326px; */
 }
 
 .header {
@@ -28,7 +28,7 @@ position: fixed;
 top: 0;
 transition: top 100ms ease-in-out;
 width: 100%;
-overscroll-behavior: none;
+
 box-shadow: 0px 2px 6px rgba(60, 64, 67, 0.12)
 }
 
@@ -42,7 +42,7 @@ box-shadow: 0px 2px 6px rgba(60, 64, 67, 0.12)
   width: 100%;
   top: -72px;
   transition: all 100ms ease-in-out;
-  overscroll-behavior: none;
+  
   box-shadow: none;
 }
 
@@ -65,6 +65,7 @@ box-shadow: 0px 2px 6px rgba(60, 64, 67, 0.12)
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
+  max-width: 326px;
 }
 
 .sectionA .textCon {
@@ -79,7 +80,7 @@ align-content: flex-start;
   line-height: 48px;
   letter-spacing: 0.1px;
   margin-bottom: 15.51px;
-  text-align: start;
+
 }
 
 
@@ -104,17 +105,19 @@ align-content: flex-start;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  max-width: 326px;
 }
-.sectionTabs h1 {  
-  font-size: 40px;
-  line-height: 48px;
+
+.sectionTabs h1 { 
+  font-weight: 700; 
+  font-size: 28px;
+  line-height: 38px;
   letter-spacing: 0.1px;
   margin-bottom: 16px;
 }
 .sectionTabs p {  
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 16px;
+  line-height: 28px;
   letter-spacing: -0.2px;
   margin-bottom: 41px;
 }
@@ -123,7 +126,7 @@ align-content: flex-start;
   display: flex;
   background: #F8F9FA;
   border-radius: 20px;
-  max-width: 503px;
+  /* max-width: 503px; */
   /* gap: -20px; */
 
 }
@@ -135,7 +138,7 @@ font-weight: 700;
 font-size: 14px;
 line-height: 20px;
 letter-spacing: 0.1px;
-padding: 10px 66px 10px 66px;
+padding: 10px 33px 10px 33px;
 }
 .selectedTab {
   background: #366CA5;
@@ -149,30 +152,32 @@ padding: 10px 66px 10px 66px;
   flex-direction: column-reverse;
   justify-items: flex-start;
   justify-content: flex-end;
+  height: 548px;
+  margin-bottom: 20px;
   /* height: 774px; */
   /* height: 100%; */
   /* justify-content: space-around; */
 }
 
 .tabContent .imgWrap {
-  min-width: 627px;
+  min-width: 303px;
   display: flex;
   justify-content: center;
 }
 .tabContent .imgCon0 {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 303px;
+  height: 303px;
 }
 .tabContent .imgCon1 {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 303px;
+  height: 303px;
 }
 .tabContent .imgCon2 {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 303px;
+  height: 303px;
 }
 .tabContent .textCon {
   display: flex;
@@ -187,21 +192,23 @@ padding: 10px 66px 10px 66px;
 }
 .tabContent p {
   text-align: center;
-max-width: 418px;  
+  max-width: 418px;  
 }
 
 
 .sectionB {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 44.69px;
   max-height: 941px;
-  height: 100%
+  max-width: 326px;
+  height: 100%;
+  margin-bottom: 80px
 }
 
 .sectionB .textCon {
-  margin-top: 50px;
+  /* margin-top: 80px; */
 }
 
 .sectionB h2 {
@@ -222,9 +229,74 @@ max-width: 418px;
   
 .sectionB .imgCon {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 303px;
+  height: 303px;
 }
+
+.bookingSection {
+  text-align: left;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+
+}
+.booking::-webkit-scrollbar { width: 0 !important }
+
+.bookingCard:first-of-type {
+  margin-left: 24px;
+}
+.bookingCard:last-of-type {
+  margin-right: 24px;
+}
+
+.bookingSection h1 {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: 0.1px;
+  margin-bottom: 15.51px;
+  margin-left: 24px
+}
+
+.booking {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+
+}
+
+.bookingCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 303px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.booking h2 {
+  margin-top: 24px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 38px;
+  letter-spacing: 0.1px;
+}
+
+.booking p {
+  margin-top: 44px;
+  width: 303px;
+  /* height: 96px; */
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+}
+
+#filteredAvailability {
+  /* margin-right: 131px; */
+  position: relative;
+  width: 250px;
+  height: 474px;
+} 
 
 
 .sectionForm {
@@ -377,6 +449,7 @@ background: #E0E0E0;
   .main {
     /* gap: 224px; */
     align-items: center;
+    align-content: center;
     margin-top: 207px;
     max-width: 100%;
     margin-bottom: 223.87px;
@@ -432,6 +505,7 @@ background: #E0E0E0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100vw;
     
   }
   .sectionTabs h1 {  
@@ -484,15 +558,19 @@ background: #E0E0E0;
   }
   
   .tabContent .imgWrap {
-    min-width: 627px;
+    /* min-width: 627px; */
     display: flex;
     justify-content: center;
-    margin-top: 167px;
+    margin-top: 167px; 
+  }
+  
+  .imgWrap:first-of-type {
+    margin-top: 252px;
   }
   .tabContent .imgCon0 {
     position: relative;
-    width: 627px;
-    height: 423.33px;
+    width: 535.21px;
+    height: 210px;
   }
   .tabContent .imgCon1 {
     position: relative;
@@ -524,16 +602,21 @@ background: #E0E0E0;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100vw;
-    gap: 44.69px;
+    gap: 236px;
     max-height: 941px;
     height: 100%
     
   }
-  .sectionB .textCon {
+  .sectionB:nth-child(odd) .textCon {
     margin-top: 303px;
     margin-left: 181px;
+    text-align: left;
+  } 
+  .sectionB:nth-child(even) .textCon {
+    margin-top: 303px;
+    margin-left: 0px;
     text-align: left;
   } 
 
@@ -551,7 +634,7 @@ background: #E0E0E0;
     letter-spacing: -0.2px;
     font-size: 24px;
     line-height: 36px;
-    max-width: 418px;
+    min-width: 418px;
   }
   
     .sectionB .imgCon {
@@ -560,12 +643,23 @@ background: #E0E0E0;
     width: 591px;
     height: 705.37px;
   } 
+    #filteredAvailability {
+    margin-right: 131px;
+    position: relative;
+    width: 388px;
+    height: 474px;
+  } 
 
-  /* .sectionB:nth-child(odd) {
+  .sectionB .imgCon {
+    position: relative;
+    min-width: 388px;
+    min-height: 474px;
+  }
+
+  .sectionB:nth-child(even) {
     flex-flow: row-reverse;
-    gap: 221px;
-  } */
-  
+    gap: 119px;
+  }
     
   .sectionForm {
     gap: 0px;
@@ -597,6 +691,77 @@ background: #E0E0E0;
     flex-direction: row;
   }
 
+  .bookingSection {
+    text-align: left;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+
+  }
+  .booking::-webkit-scrollbar { width: 0 !important }
+
+  .bookingCard:first-of-type {
+    margin-left: 75px;
+  }
+  .bookingCard:last-of-type {
+    margin-right: 75px;
+  }
+
+  .bookingSection h1 {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 76px;
+    letter-spacing: -1px;
+    margin-left: 75px;
+    width: 152px
+  }
+
+  .bookingSectionTitleRow {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 45px;
+  
+  }
+  .bookingSectionTitleRow img {
+width: 20px;
+height: 20px;
+  
+  }
+
+  .booking {
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    margin-top: 80px;
+
+  }
+
+  .bookingCard {
+    display: flex;
+    flex-direction: column;
+    min-width: 516px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .booking h2 {
+    margin-top: 24px;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: 0.1px;
+  }
+  
+  .booking p {
+    margin-top: 44px;
+    width: 500px;
+    height: 96px;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.2px;
+  }
+  
 
   .formBottom button {
     font-weight: 600;
